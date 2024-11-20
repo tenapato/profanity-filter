@@ -1,5 +1,5 @@
 # Profanity Filter
-> version 1.0.1
+> version 1.2.0
 
 This project is a profanity filter that detects and filters out offensive words and phrases from text. It supports multiple languages and includes leetspeak normalization.
 

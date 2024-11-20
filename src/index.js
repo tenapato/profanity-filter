@@ -102,9 +102,11 @@ class ProfanityFilter {
         const words = normalizedInput.split(/\s+/);
 
         for (const word of words) {
-            if (this.phraseSets.has(word)) {
-                this.log(`[ProfanityFilter] Profanity found in word: "${word}"`);
-                return true;
+            for (const phrase of this.phraseSets) {
+                if (word.includes(phrase)) {
+                    this.log(`[ProfanityFilter] Profanity found in word: "${word}" containing phrase: "${phrase}"`);
+                    return true;
+                }
             }
         }
 
