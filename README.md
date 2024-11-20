@@ -14,7 +14,7 @@ This project is a profanity filter that detects and filters out offensive words 
 
 1. Install the package:
     ```sh
-    npm install profanity-filter
+    npm install @tenapato/profanity-filter
     ```
 
 ## Usage
