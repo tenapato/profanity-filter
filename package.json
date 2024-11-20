@@ -1,5 +1,5 @@
 {
-  "name": "profanity-filter",
+  "name": "@tenapato/profanity-filter",
   "version": "1.0.0",
   "description": "This is a packege that filters bad words",
   "main": "src/index.js",
