@@ -25,10 +25,10 @@ This project is a profanity filter that detects and filters out offensive words 
 import  ProfanityFilter  from 'profanity-filter'
 
 const filter = new ProfanityFilter();
-const text = "Your text here";
-const isProfane = filter.isProfane(text);
+const word = "Your word here";
+const isProfane = filter.isProfane(word);
 
-console.log(`Is the text profane? ${isProfane}`);
+console.log(`Is the word profane? ${isProfane}`);
 ```
 
 ### Custom Options
@@ -37,11 +37,15 @@ You can customize the filter by passing options to the constructor:
 
 ```javascript
 const filter = new ProfanityFilter({
-    langs: ['eng', 'spanish'], // Supported languages
+    langs: ['eng', 'spanish'], // languages
     threshold: 2, // Levenshtein distance threshold
     debug: true // Enable debug logging
 });
 ```
+
+### Supported Languages
+- English
+- Spanish
 
 ### Adding Custom Profane Words
 
