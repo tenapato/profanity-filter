@@ -1,0 +1,21 @@
+{
+  "name": "profanity-filter",
+  "version": "1.0.0",
+  "description": "This is a packege that filters bad words",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+"
+  },
+  "keywords": [
+    "curse",
+    "words",
+    "profanity",
+    "filter"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patricio Tena",
+  "license": "ISC"
+}
