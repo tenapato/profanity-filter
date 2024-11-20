@@ -1,6 +1,6 @@
 // index.js
-const fs = require('fs');
-const path = require('path');
+import { words as engWords } from './engArray.js';
+import { words as spanishWords } from './spanishArray.js';
 
 class ProfanityFilter {
     constructor(options = {}) {
@@ -45,11 +45,11 @@ class ProfanityFilter {
     levenshteinDistance(a, b) {
         if (!a || !b) return Infinity;
 
-        const matrix = Array.from({ length: a.length + 1 }, () => 
+        const matrix = Array.from({ length: a.length + 1 }, () =>
             Array(b.length + 1).fill(0));
 
-        for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
-        for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+        for (let i = 0; i <= a.length; i) matrix[i][0] = i;
+        for (let j = 0; j <= b.length; j) matrix[0][j] = j;
 
         for (let i = 1; i <= a.length; i++) {
             for (let j = 1; j <= b.length; j++) {
@@ -72,27 +72,21 @@ class ProfanityFilter {
         const phraseSet = new Set();
 
         for (const lang of this.langs) {
-            try {
-                const filePath = path.join(__dirname, `${lang}.txt`);
-                
-                if (fs.existsSync(filePath)) {
-                    const phrases = fs
-                        .readFileSync(filePath, 'utf-8')
-                        .split(/\r?\n/)
-                        .map(phrase => this.normalizePhrase(phrase.trim()))  // Normalize phrases and trim
-                        .filter(phrase => phrase.length > 0);
-
-                    phrases.forEach(phrase => {
-                        phraseSet.add(phrase);
-                        // this.log(`Loaded phrase: "${phrase}"`);
-                    });  // Add each normalized phrase
-                    this.log(`Loaded ${phrases.length} phrases from ${lang}.txt`);
-                } else {
-                    this.log(`Language file not found: ${lang}.txt`);
-                }
-            } catch (error) {
-                this.log(`Error loading profanity words for ${lang}: ${error.message}`);
+            let words;
+            if (lang === 'eng') {
+                words = engWords;
+            } else if (lang === 'spanish') {
+                words = spanishWords;
+            } else {
+                this.log(`Unsupported language: ${lang}`);
+                continue;
             }
+
+            words.map(phrase => this.normalizePhrase(phrase.trim()))
+                .filter(phrase => phrase.length > 0)
+                .forEach(phrase => phraseSet.add(phrase));
+
+            this.log(`Loaded ${words.length} phrases for ${lang}`);
         }
 
         this.log(`Total unique profane phrases loaded: ${phraseSet.size}`);
@@ -102,14 +96,11 @@ class ProfanityFilter {
     isProfane(input) {
         if (!input || typeof input !== 'string') return false;
 
-        // Normalize the input text (both single words and multi-word phrases)
         const normalizedInput = this.normalizePhrase(input);
         this.log(`[ProfanityFilter] Normalized input: "${normalizedInput}"`);
 
-        // Split the normalized input into individual words
         const words = normalizedInput.split(/\s+/);
 
-        // Check each word against the phraseSets
         for (const word of words) {
             if (this.phraseSets.has(word)) {
                 this.log(`[ProfanityFilter] Profanity found in word: "${word}"`);
@@ -133,4 +124,4 @@ class ProfanityFilter {
     }
 }
 
-module.exports = ProfanityFilter;
+export default ProfanityFilter;
