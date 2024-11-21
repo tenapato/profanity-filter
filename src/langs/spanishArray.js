@@ -120,5 +120,6 @@ export const words = [
     "zunga",
     "nepe",
     "naco",
-    "nalgas meadas"
+    "nalgas meadas",
+    "chupala"
 ];
