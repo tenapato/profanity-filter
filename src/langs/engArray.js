@@ -1381,5 +1381,7 @@ export const words = [
     "yankee",
     "yellowman",
     "zigabo",
-    "zipperhead"
+    "zipperhead",
+    "nword",
+    "n-word"
 ];

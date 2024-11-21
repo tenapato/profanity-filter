@@ -118,5 +118,7 @@ export const words = [
     "vete al infierno",
     "zorra",
     "zunga",
-    "nepe"
+    "nepe",
+    "naco",
+    "nalgas meadas"
 ];
