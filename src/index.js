@@ -1,6 +1,6 @@
 // index.js
-import { words as engWords } from './engArray.js';
-import { words as spanishWords } from './spanishArray.js';
+import { words as engWords } from './langs/engArray.js';
+import { words as spanishWords } from './langs/spanishArray.js';
 
 class ProfanityFilter {
     constructor(options = {}) {
