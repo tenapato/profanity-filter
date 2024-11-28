@@ -24,12 +24,27 @@ class ProfanityFilter {
 
     normalizeWord(word) {
         if (!word) return '';
-        return word
+        let normalizedWord = word
             .toLowerCase()
             .split('')
             .map(char => this.leetMap[char] || char)  
             .join('')
             .trim();
+
+        // Handle common feminine and plural suffixes in Spanish
+        if (this.langs.includes('spanish')) {
+            if (normalizedWord.endsWith('as')) {
+                normalizedWord = normalizedWord.slice(0, -2) + 'o';
+            } else if (normalizedWord.endsWith('os')) {
+                normalizedWord = normalizedWord.slice(0, -1);
+            } else if (normalizedWord.endsWith('a')) {
+                normalizedWord = normalizedWord.slice(0, -1) + 'o';
+            } else if (normalizedWord.endsWith('es')) {
+                normalizedWord = normalizedWord.slice(0, -2);
+            }
+        }
+
+        return normalizedWord;
     }
 
     normalizePhrase(phrase) {
