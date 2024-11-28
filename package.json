@@ -1,6 +1,6 @@
 {
   "name": "@tenapato/profanity-filter",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "This is a packege that filters bad words",
   "main": "src/index.js",
   "types": "src/index.d.ts",
