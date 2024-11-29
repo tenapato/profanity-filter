@@ -9,6 +9,7 @@ This project is a profanity filter that detects and filters out offensive words 
 - Supports multiple languages
 - Normalizes leetspeak
 - Customizable profanity word list
+- Supports male and female Spanish words normalization
 
 ## Installation
 

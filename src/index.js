@@ -112,20 +112,20 @@ class ProfanityFilter {
         if (!input || typeof input !== 'string') return false;
 
         const normalizedInput = this.normalizePhrase(input);
-        this.log(`[ProfanityFilter] Normalized input: "${normalizedInput}"`);
+        this.log(`Normalized input: "${normalizedInput}"`);
 
         const words = normalizedInput.split(/\s+/);
 
         for (const word of words) {
             for (const phrase of this.phraseSets) {
                 if (word.includes(phrase)) {
-                    this.log(`[ProfanityFilter] Profanity found in word: "${word}" containing phrase: "${phrase}"`);
+                    this.log(`Profanity found in word: "${word}" containing phrase: "${phrase}"`);
                     return true;
                 }
             }
         }
 
-        this.log(`[ProfanityFilter] No profanity found in: "${normalizedInput}"`);
+        this.log(`No profanity found in: "${normalizedInput}"`);
         return false;
     }
 
