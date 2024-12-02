@@ -17,9 +17,25 @@ class ProfanityFilter {
         this.langs = options.langs || ['eng'];
         this.threshold = options.threshold || 1;
         this.debug = options.debug || false;
+        this.checkSymbols = options.checkSymbols || false;
 
         this.log(`Using languages: ${this.langs.join(', ')}`);
         this.phraseSets = this.loadProfanityWords();
+
+        this.profaneSymbols = [
+            /8={2,}D/, // Matches 8==D, 8===D, 8====D, etc.
+            /8-{2,}D/, // Matches 8--D, 8---D, 8----D, etc.
+            /8-{2,}/, // Matches 8--, 8---, 8----, etc.
+            /:-\)/,    // Matches :-)
+            /:-\(/,    // Matches :-(
+            /:-D/,     // Matches :-D
+            /\.i\./,   // Matches .i.
+            /\.l\./,   // Matches .l.
+            /\.I\./,   // Matches .I.
+            /\.t./,    // Matches .t
+            /:--+/,    // Matches :--, :---, :----, etc.
+            /:={2,}/   // Matches :=, :==, :===, etc.
+        ]; 
     }
 
     normalizeWord(word) {
@@ -120,6 +136,15 @@ class ProfanityFilter {
             for (const phrase of this.phraseSets) {
                 if (word.includes(phrase)) {
                     this.log(`Profanity found in word: "${word}" containing phrase: "${phrase}"`);
+                    return true;
+                }
+            }
+        }
+
+        if (this.checkSymbols) {
+            for (const symbol of this.profaneSymbols) {
+                if (symbol.test(input)) {
+                    this.log(`Profanity found in symbol: "${symbol}"`);
                     return true;
                 }
             }

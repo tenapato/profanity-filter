@@ -1,5 +1,5 @@
 # Profanity Filter
-> version 1.2.1
+> version 1.4.0
 
 This project is a profanity filter that detects and filters out offensive words and phrases from text. It supports multiple languages and includes leetspeak normalization.
 
@@ -10,6 +10,7 @@ This project is a profanity filter that detects and filters out offensive words 
 - Normalizes leetspeak
 - Customizable profanity word list
 - Supports male and female Spanish words normalization
+- Detects profane symbols
 
 ## Installation
 
@@ -40,7 +41,8 @@ You can customize the filter by passing options to the constructor:
 const filter = new ProfanityFilter({
     langs: ['eng', 'spanish'], // languages
     threshold: 2, // Levenshtein distance threshold
-    debug: true // Enable debug logging
+    debug: true, // Enable debug logging
+    checkSymbols: true // Enable checking for profane symbols
 });
 ```
 
