@@ -5,6 +5,7 @@ declare module '@tenapato/profanity-filter' {
         langs?: string[];
         threshold?: number;
         debug?: boolean;
+        checkSymbols?: boolean; 
     }
 
     class ProfanityFilter {
